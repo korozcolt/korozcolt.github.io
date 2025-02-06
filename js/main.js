@@ -58,6 +58,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div class="mt-4 flex items-center space-x-4">
                         <a href="${repo.html_url}" target="_blank" class="text-blue-400 hover:text-blue-300">Ver en GitHub</a>
                         <span class="text-gray-400">${repo.language || "Sin lenguaje"}</span>
+                        <span class=>
                     </div>
                 `;
 
