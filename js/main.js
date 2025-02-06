@@ -188,15 +188,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     const experiencesContainer = document.getElementById('experiences');
     const template = document.getElementById('experienceTemplate');
-    const prevPageBtn = document.getElementById('prevPage');
-    const nextPageBtn = document.getElementById('nextPage');
+    const prevPageBtn = document.getElementById('prevPageExp');
+    const nextPageBtn = document.getElementById('nextPageExp');
     const pageInfo = document.getElementById('pageInfo');
 
     let currentPage = 1;
     const itemsPerPage = 6;
     const totalPages = Math.ceil(experiences.length / itemsPerPage);
 
-    function renderExperiences(page) {
+    async function renderExperiences(page) {
+        const container = document.getElementById('experiences');
+        container.classList.add('page-exit');
+        
+        await new Promise(resolve => setTimeout(resolve, 300));
         const start = (page - 1) * itemsPerPage;
         const end = start + itemsPerPage;
         const currentExperiences = experiences.slice(start, end);
@@ -225,8 +229,8 @@ document.addEventListener('DOMContentLoaded', () => {
             const detailsDiv = clone.querySelector('.details');
 
             toggleBtn.addEventListener('click', () => {
-                const isHidden = detailsDiv.classList.contains('hidden');
-                detailsDiv.classList.toggle('hidden');
+                const isHidden = !detailsDiv.classList.contains('visible');
+                detailsDiv.classList.toggle('visible');
                 toggleBtn.textContent = isHidden ? 'Ver menos' : 'Ver más';
                 
                 if (isHidden) {
@@ -237,6 +241,14 @@ document.addEventListener('DOMContentLoaded', () => {
             });
 
             experiencesContainer.appendChild(clone);
+        
+        setTimeout(() => {
+            container.classList.remove('page-exit');
+            container.classList.add('page-enter');
+            requestAnimationFrame(() => {
+                container.classList.remove('page-enter');
+            });
+        }, 50);
         });
 
         pageInfo.textContent = `Página ${page} de ${totalPages}`;

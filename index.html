@@ -33,32 +33,30 @@
     </section>
 
     <!-- Experiencia Laboral -->
-<section class="container mx-auto px-4 py-12 fade-in">
-    <h2 class="text-2xl font-bold mb-4">Experiencia Laboral</h2>
-    <div id="experiences" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        <!-- Las experiencias se cargarán aquí dinámicamente -->
-    </div>
-    <!-- Paginador -->
-    <div class="mt-8 flex justify-center space-x-4">
-        <button id="prevPage" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50">Anterior</button>
-        <span id="pageInfo" class="text-gray-400 flex items-center"></span>
-        <button id="nextPage" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50">Siguiente</button>
-    </div>
-</section>
-
-<template id="experienceTemplate">
-    <div class="bg-gray-900 p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer">
-        <h3 class="text-xl font-semibold"></h3>
-        <p class="text-gray-400 role"></p>
-        <p class="text-gray-400 period"></p>
-        <p class="text-gray-400 location"></p>
-        <button class="text-blue-400 hover:text-blue-300 mt-4 toggle-details">Ver más</button>
-        <div class="details hidden mt-4 space-y-2">
-            <p class="text-gray-300 description"></p>
-            <ul class="list-disc list-inside text-gray-400"></ul>
+    <section class="container mx-auto px-4 py-12 fade-in">
+        <h2 class="text-2xl font-bold mb-4">Experiencia Laboral</h2>
+        <div id="experiences" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 page-transition">
         </div>
-    </div>
-</template>
+        <div class="mt-8 flex justify-center space-x-4">
+            <button id="prevPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300">Anterior</button>
+            <span id="pageInfo" class="text-gray-400 flex items-center"></span>
+            <button id="nextPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300">Siguiente</button>
+        </div>
+    </section>
+    
+    <template id="experienceTemplate">
+        <div class="bg-gray-900 p-6 rounded-lg shadow-lg transition-all duration-300 hover:shadow-xl cursor-pointer">
+            <h3 class="text-xl font-semibold"></h3>
+            <p class="text-gray-400 role"></p>
+            <p class="text-gray-400 period"></p>
+            <p class="text-gray-400 location"></p>
+            <button class="text-blue-400 hover:text-blue-300 mt-4 toggle-details transition-colors duration-300">Ver más</button>
+            <div class="details mt-4 space-y-2">
+                <p class="text-gray-300 description"></p>
+                <ul class="list-disc list-inside text-gray-400"></ul>
+            </div>
+        </div>
+    </template>
 
     <!-- Educación -->
     <section class="container mx-auto px-4 py-12 fade-in">

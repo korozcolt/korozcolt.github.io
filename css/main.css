@@ -52,3 +52,29 @@ body::before {
 #pagination button:hover:not(:disabled) {
     background-color: #1e40af; /* Cambia el color al pasar el mouse */
 }
+
+.page-transition {
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.page-exit {
+    opacity: 0;
+    transform: translateX(-20px);
+}
+
+.page-enter {
+    opacity: 0;
+    transform: translateX(20px);
+}
+
+.details {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out, opacity 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.details.visible {
+    max-height: 500px;
+    opacity: 1;
+}
