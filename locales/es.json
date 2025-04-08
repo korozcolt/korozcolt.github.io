@@ -1,0 +1,107 @@
+{
+    "job_title": "Desarrollador Backend",
+    "summary_title": "Extracto",
+    "summary_text": "Desde mucho antes del momento de mi graduación, la experiencia que tenía me permitió iniciar labores de desarrollo de software y mejorar aspectos que me mantuvieran al corriente con nuevas tecnologías.",
+    "experience_title": "Experiencia Laboral",
+    "education_title": "Educación",
+    "education_degree": "Ingeniero de Sistemas",
+    "skills_title": "Habilidades",
+    "projects_title": "Proyectos",
+    "certifications_title": "Certificaciones",
+    "contact_title": "Contacto",
+    "contact_info": "Información de Contacto",
+    "professional_links": "Enlaces Profesionales",
+    "rights_reserved": "Todos los derechos reservados.",
+    "previous": "Anterior",
+    "next": "Siguiente",
+    "view_more": "Ver más",
+    "view_less": "Ver menos",
+    "page": "Página",
+    "of": "de",
+    "error_loading_repos": "Error al cargar los repositorios",
+    "no_description": "Sin descripción",
+    "no_language": "Sin lenguaje especificado",
+    "no_repos_found": "No se encontraron repositorios",
+    "view_on_github": "Ver en GitHub",
+    "download_cv": "Descargar CV",
+    "experiences": {
+        "brandlive": {
+            "role": "Ingeniero Full Stack",
+            "description": "Desarrollo de aplicaciones web con tecnologías modernas",
+            "details": [
+                "Desarrollo frontend con React y TailwindCSS",
+                "Backend con Node.js y bases de datos NoSQL",
+                "Integración con APIs y servicios externos"
+            ]
+        },
+        "lean_tech": {
+            "role": "Desarrollador Backend",
+            "description": "Desarrollo de soluciones backend escalables",
+            "details": [
+                "Arquitectura de microservicios",
+                "Optimización de bases de datos",
+                "Implementación de APIs RESTful"
+            ]
+        },
+        "freelance": {
+            "role": "Desarrollador Independiente",
+            "description": "Desarrollo integral de soluciones web",
+            "details": [
+                "Desarrollo de software web",
+                "Backend (Laravel, Nodejs, MongoDB, MySql)",
+                "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
+            ]
+        },
+        "gobernacion_sucre": {
+            "role": "Ingeniero de sistemas",
+            "description": "Gestión y control de sistemas informáticos",
+            "details": [
+                "Digitación de información",
+                "Control y Supervisión de equipo de digitadores",
+                "Control y supervisión de inventario de vacunación",
+                "Auditoría a equipos de cómputo"
+            ]
+        },
+        "smart_mobility": {
+            "role": "Ingeniero de proyecto",
+            "description": "Gestión de proyectos de infraestructura tecnológica",
+            "details": [
+                "Instalación de servidores",
+                "Configuración de equipos de comunicación 3G y 4G",
+                "Configuración de equipos controladores semafóricos",
+                "Administración de sistema de control semafórico"
+            ]
+        },
+        "dane": {
+            "role": "Ingeniero de sistemas",
+            "description": "Gestión de datos estadísticos",
+            "details": [
+                "Manejo de Equipos especializados estadísticos",
+                "Backup de información confidencial",
+                "Manejo de Tabla y Base de datos de encuestas",
+                "Manejo de personal asociado a encuestas"
+            ]
+        },
+        "xiriux": {
+            "role": "Ingeniero de Desarrollo",
+            "description": "Desarrollo de soluciones de seguridad y networking",
+            "details": [
+                "Desarrollo de Firewall (Network Security)",
+                "Desarrollo sobre plataforma .NET",
+                "Desarrollo DataBase (MySQL, SQL SERVER, Oracle)",
+                "Administración de Servidores",
+                "Diseño y configuración de MESH (Zonas WIFI)"
+            ]
+        }
+    },
+    "skills": {
+        "skill_1": "Sistemas complejos",
+        "skill_2": "Frameworks de PHP",
+        "skill_3": "AJAX",
+        "skill_4": "Laravel",
+        "skill_5": "Node.js",
+        "skill_6": "MongoDB",
+        "skill_7": "React",
+        "skill_8": "TailwindCSS"
+    }
+}

@@ -20,8 +20,11 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     // Inicializar repositorios y experiencias
-    initRepositories();
-    initExperiences();
+    // Esperamos a que el sistema i18n esté listo
+    document.addEventListener('languageChanged', () => {
+        initRepositories();
+        initExperiences();
+    }, { once: true });
 });
 
 // Función para inicializar la sección de repositorios
@@ -42,7 +45,7 @@ function initRepositories() {
             renderRepos(currentPage);
         } catch (error) {
             console.error("Error al obtener los repositorios:", error);
-            reposContainer.innerHTML = `<p class='text-gray-400'>${translations[currentLanguage]['error_loading_repos'] || 'Error loading repositories'}</p>`;
+            reposContainer.innerHTML = `<p class='text-gray-400'>${window.i18n.t('error_loading_repos')}</p>`;
         }
     };
 
@@ -61,19 +64,19 @@ function initRepositories() {
 
                 repoCard.innerHTML = `
                     <h3 class="text-xl font-semibold">${repo.name}</h3>
-                    <p class="text-gray-400 mt-2">${repo.description || translations[currentLanguage]['no_description'] || 'No description'}</p>
+                    <p class="text-gray-400 mt-2">${repo.description || window.i18n.t('no_description')}</p>
                     <div class="mt-4 flex items-center space-x-4">
                         <a href="${repo.html_url}" target="_blank" class="text-blue-400 hover:text-blue-300">
-                            ${translations[currentLanguage]['view_on_github'] || 'View on GitHub'}
+                            ${window.i18n.t('view_on_github')}
                         </a>
-                        <span class="text-gray-400">${repo.language || translations[currentLanguage]['no_language'] || 'No language specified'}</span>
+                        <span class="text-gray-400">${repo.language || window.i18n.t('no_language')}</span>
                     </div>
                 `;
 
                 reposContainer.appendChild(repoCard);
             });
         } else {
-            reposContainer.innerHTML = `<p class='text-gray-400'>${translations[currentLanguage]['no_repos_found'] || 'No repositories found'}</p>`;
+            reposContainer.innerHTML = `<p class='text-gray-400'>${window.i18n.t('no_repos_found')}</p>`;
         }
 
         // Habilitar o deshabilitar botones de paginación
@@ -106,232 +109,95 @@ function initExperiences() {
     const experiences = [
         {
             company: "Brandlive",
-            role: {
-                es: "Ingeniero Full Stack",
-                en: "Full Stack Engineer"
-            },
-            period: {
-                es: "febrero de 2023 - Presente (2 años 1 mes)",
-                en: "February 2023 - Present (2 years 1 month)"
-            },
-            location: {
-                es: "Bogotá, Capital District, Colombia",
-                en: "Bogotá, Capital District, Colombia"
-            },
-            description: {
-                es: "Desarrollo de aplicaciones web con tecnologías modernas",
-                en: "Web application development with modern technologies"
-            },
-            details: {
-                es: [
-                    "Desarrollo frontend con React y TailwindCSS",
-                    "Backend con Node.js y bases de datos NoSQL",
-                    "Integración con APIs y servicios externos"
-                ],
-                en: [
-                    "Frontend development with React and TailwindCSS",
-                    "Backend with Node.js and NoSQL databases",
-                    "Integration with APIs and external services"
-                ]
-            }
+            key: "brandlive"
         },
         {
             company: "Lean Tech",
-            role: {
-                es: "Desarrollador Backend",
-                en: "Backend Developer"
-            },
-            period: {
-                es: "abril de 2021 - diciembre de 2022 (1 año 9 meses)",
-                en: "April 2021 - December 2022 (1 year 9 months)"
-            },
-            location: {
-                es: "Medellín, Antioquia, Colombia",
-                en: "Medellín, Antioquia, Colombia"
-            },
-            description: {
-                es: "Desarrollo de soluciones backend escalables",
-                en: "Development of scalable backend solutions"
-            },
-            details: {
-                es: [
-                    "Arquitectura de microservicios",
-                    "Optimización de bases de datos",
-                    "Implementación de APIs RESTful"
-                ],
-                en: [
-                    "Microservices architecture",
-                    "Database optimization",
-                    "RESTful API implementation"
-                ]
-            }
+            key: "lean_tech"
         },
         {
             company: "Freelance Software Engineer",
-            role: {
-                es: "Desarrollador Independiente",
-                en: "Independent Developer"
-            },
-            period: {
-                es: "enero de 2007 - diciembre de 2020 (14 años)",
-                en: "January 2007 - December 2020 (14 years)"
-            },
-            location: {
-                es: "Colombia",
-                en: "Colombia"
-            },
-            description: {
-                es: "Desarrollo integral de soluciones web",
-                en: "Comprehensive web solutions development"
-            },
-            details: {
-                es: [
-                    "Desarrollo de software web",
-                    "Backend (Laravel, Nodejs, MongoDB, MySql)",
-                    "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
-                ],
-                en: [
-                    "Web software development",
-                    "Backend (Laravel, Nodejs, MongoDB, MySql)",
-                    "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
-                ]
-            }
+            key: "freelance"
         },
         {
             company: "Gobernación de Sucre",
-            role: {
-                es: "Ingeniero de sistemas",
-                en: "Systems Engineer"
-            },
-            period: {
-                es: "mayo de 2019 - diciembre de 2019 (8 meses)",
-                en: "May 2019 - December 2019 (8 months)"
-            },
-            location: {
-                es: "Colombia",
-                en: "Colombia"
-            },
-            description: {
-                es: "Gestión y control de sistemas informáticos",
-                en: "Management and control of computer systems"
-            },
-            details: {
-                es: [
-                    "Digitación de información",
-                    "Control y Supervisión de equipo de digitadores",
-                    "Control y supervisión de inventario de vacunación",
-                    "Auditoría a equipos de cómputo"
-                ],
-                en: [
-                    "Data entry",
-                    "Control and supervision of data entry team",
-                    "Control and supervision of vaccination inventory",
-                    "Computer equipment audit"
-                ]
-            }
+            key: "gobernacion_sucre"
         },
         {
             company: "Smart Mobility & Security",
-            role: {
-                es: "Ingeniero de proyecto",
-                en: "Project Engineer"
-            },
-            period: {
-                es: "julio de 2018 - abril de 2019 (10 meses)",
-                en: "July 2018 - April 2019 (10 months)"
-            },
-            location: {
-                es: "Colombia",
-                en: "Colombia"
-            },
-            description: {
-                es: "Gestión de proyectos de infraestructura tecnológica",
-                en: "Technological infrastructure project management"
-            },
-            details: {
-                es: [
-                    "Instalación de servidores",
-                    "Configuración de equipos de comunicación 3G y 4G",
-                    "Configuración de equipos controladores semafóricos",
-                    "Administración de sistema de control semafórico"
-                ],
-                en: [
-                    "Server installation",
-                    "3G and 4G communication equipment configuration",
-                    "Traffic light controller equipment configuration",
-                    "Traffic light control system administration"
-                ]
-            }
+            key: "smart_mobility"
         },
         {
             company: "DANE",
-            role: {
-                es: "Ingeniero de sistemas",
-                en: "Systems Engineer"
-            },
-            period: {
-                es: "septiembre de 2016 - febrero de 2017 (6 meses)",
-                en: "September 2016 - February 2017 (6 months)"
-            },
-            location: {
-                es: "Colombia",
-                en: "Colombia"
-            },
-            description: {
-                es: "Gestión de datos estadísticos",
-                en: "Statistical data management"
-            },
-            details: {
-                es: [
-                    "Manejo de Equipos especializados estadísticos",
-                    "Backup de información confidencial",
-                    "Manejo de Tabla y Base de datos de encuestas",
-                    "Manejo de personal asociado a encuestas"
-                ],
-                en: [
-                    "Management of specialized statistical equipment",
-                    "Confidential information backup",
-                    "Survey table and database management",
-                    "Survey-associated personnel management"
-                ]
-            }
+            key: "dane"
         },
         {
             company: "Xiriux Ltda",
-            role: {
-                es: "Ingeniero de Desarrollo",
-                en: "Development Engineer"
-            },
-            period: {
-                es: "junio de 2009 - diciembre de 2011 (2 años 7 meses)",
-                en: "June 2009 - December 2011 (2 years 7 months)"
-            },
-            location: {
-                es: "Colombia",
-                en: "Colombia"
-            },
-            description: {
-                es: "Desarrollo de soluciones de seguridad y networking",
-                en: "Security and networking solutions development"
-            },
-            details: {
-                es: [
-                    "Desarrollo de Firewall (Network Security)",
-                    "Desarrollo sobre plataforma .NET",
-                    "Desarrollo DataBase (MySQL, SQL SERVER, Oracle)",
-                    "Administración de Servidores",
-                    "Diseño y configuración de MESH (Zonas WIFI)"
-                ],
-                en: [
-                    "Firewall development (Network Security)",
-                    "Development on .NET platform",
-                    "Database development (MySQL, SQL SERVER, Oracle)",
-                    "Server administration",
-                    "MESH design and configuration (WIFI Zones)"
-                ]
-            }
+            key: "xiriux"
         }
     ];
+
+    const periods = {
+        brandlive: {
+            es: "febrero de 2023 - Presente (2 años 1 mes)",
+            en: "February 2023 - Present (2 years 1 month)"
+        },
+        lean_tech: {
+            es: "abril de 2021 - diciembre de 2022 (1 año 9 meses)",
+            en: "April 2021 - December 2022 (1 year 9 months)"
+        },
+        freelance: {
+            es: "enero de 2007 - diciembre de 2020 (14 años)",
+            en: "January 2007 - December 2020 (14 years)"
+        },
+        gobernacion_sucre: {
+            es: "mayo de 2019 - diciembre de 2019 (8 meses)",
+            en: "May 2019 - December 2019 (8 months)"
+        },
+        smart_mobility: {
+            es: "julio de 2018 - abril de 2019 (10 meses)",
+            en: "July 2018 - April 2019 (10 months)"
+        },
+        dane: {
+            es: "septiembre de 2016 - febrero de 2017 (6 meses)",
+            en: "September 2016 - February 2017 (6 months)"
+        },
+        xiriux: {
+            es: "junio de 2009 - diciembre de 2011 (2 años 7 meses)",
+            en: "June 2009 - December 2011 (2 years 7 months)"
+        }
+    };
+
+    const locations = {
+        brandlive: {
+            es: "Bogotá, Capital District, Colombia",
+            en: "Bogotá, Capital District, Colombia"
+        },
+        lean_tech: {
+            es: "Medellín, Antioquia, Colombia",
+            en: "Medellín, Antioquia, Colombia"
+        },
+        freelance: {
+            es: "Colombia",
+            en: "Colombia"
+        },
+        gobernacion_sucre: {
+            es: "Colombia",
+            en: "Colombia"
+        },
+        smart_mobility: {
+            es: "Colombia",
+            en: "Colombia"
+        },
+        dane: {
+            es: "Colombia",
+            en: "Colombia"
+        },
+        xiriux: {
+            es: "Colombia",
+            en: "Colombia"
+        }
+    };
 
     const experiencesContainer = document.getElementById('experiences');
     const template = document.getElementById('experienceTemplate');
@@ -354,18 +220,24 @@ function initExperiences() {
         const currentExperiences = experiences.slice(start, end);
 
         experiencesContainer.innerHTML = '';
+        
+        // Obtener idioma actual
+        const currentLang = window.i18n.currentLanguage;
 
         currentExperiences.forEach(exp => {
             const clone = template.content.cloneNode(true);
             
             clone.querySelector('h3').textContent = exp.company;
-            clone.querySelector('.role').textContent = exp.role[currentLanguage];
-            clone.querySelector('.period').textContent = exp.period[currentLanguage];
-            clone.querySelector('.location').textContent = exp.location[currentLanguage];
-            clone.querySelector('.description').textContent = exp.description[currentLanguage];
+            clone.querySelector('.role').textContent = window.i18n.t(`experiences.${exp.key}.role`);
+            clone.querySelector('.period').textContent = periods[exp.key][currentLang];
+            clone.querySelector('.location').textContent = locations[exp.key][currentLang];
+            clone.querySelector('.description').textContent = window.i18n.t(`experiences.${exp.key}.description`);
 
             const detailsList = clone.querySelector('ul');
-            exp.details[currentLanguage].forEach(detail => {
+            // Usamos los detalles del JSON, si no están disponibles, dejamos una lista vacía
+            const details = window.i18n.translations[currentLang]?.experiences?.[exp.key]?.details || [];
+            
+            details.forEach(detail => {
                 const li = document.createElement('li');
                 li.textContent = detail;
                 li.className = 'text-sm';
@@ -380,8 +252,8 @@ function initExperiences() {
                 const isHidden = !detailsDiv.classList.contains('visible');
                 detailsDiv.classList.toggle('visible');
                 toggleBtn.textContent = isHidden ? 
-                    translations[currentLanguage]['view_less'] : 
-                    translations[currentLanguage]['view_more'];
+                    window.i18n.t('view_less') : 
+                    window.i18n.t('view_more');
                 
                 if (isHidden) {
                     card.classList.add('ring-2', 'ring-blue-500');
@@ -401,7 +273,7 @@ function initExperiences() {
             }, 50);
         });
 
-        pageInfo.textContent = `${translations[currentLanguage]['page'] || 'Page'} ${page} ${translations[currentLanguage]['of'] || 'of'} ${totalPages}`;
+        pageInfo.textContent = `${window.i18n.t('page')} ${page} ${window.i18n.t('of')} ${totalPages}`;
         prevPageBtn.disabled = page === 1;
         nextPageBtn.disabled = page === totalPages;
 
@@ -437,16 +309,11 @@ function initExperiences() {
     renderExperiences(1);
 }
 
-// Variable global para el idioma actual (se sincroniza con i18n.js)
-let currentLanguage = 'es';
-
 // Escuchar cambios de idioma desde i18n.js
-document.addEventListener('languageChanged', (e) => {
-    currentLanguage = e.detail.language;
+document.addEventListener('languageChanged', () => {
     // Volver a renderizar las experiencias con el nuevo idioma
     const experiencesContainer = document.getElementById('experiences');
     if (experiencesContainer) {
-        const currentPage = 1; // Puedes implementar lógica para mantener la página actual
         initExperiences();
     }
     

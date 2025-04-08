@@ -1,0 +1,107 @@
+{
+    "job_title": "Backend Developer",
+    "summary_title": "Summary",
+    "summary_text": "Long before my graduation, my experience allowed me to start working in software development and improve aspects that kept me up to date with new technologies.",
+    "experience_title": "Work Experience",
+    "education_title": "Education",
+    "education_degree": "Systems Engineer",
+    "skills_title": "Skills",
+    "projects_title": "Projects",
+    "certifications_title": "Certifications",
+    "contact_title": "Contact",
+    "contact_info": "Contact Information",
+    "professional_links": "Professional Links",
+    "rights_reserved": "All rights reserved.",
+    "previous": "Previous",
+    "next": "Next",
+    "view_more": "View more",
+    "view_less": "View less",
+    "page": "Page",
+    "of": "of",
+    "error_loading_repos": "Error loading repositories",
+    "no_description": "No description",
+    "no_language": "No language specified",
+    "no_repos_found": "No repositories found",
+    "view_on_github": "View on GitHub",
+    "download_cv": "Download CV",
+    "experiences": {
+        "brandlive": {
+            "role": "Full Stack Engineer",
+            "description": "Web application development with modern technologies",
+            "details": [
+                "Frontend development with React and TailwindCSS",
+                "Backend with Node.js and NoSQL databases",
+                "Integration with APIs and external services"
+            ]
+        },
+        "lean_tech": {
+            "role": "Backend Developer",
+            "description": "Development of scalable backend solutions",
+            "details": [
+                "Microservices architecture",
+                "Database optimization",
+                "RESTful API implementation"
+            ]
+        },
+        "freelance": {
+            "role": "Independent Developer",
+            "description": "Comprehensive web solutions development",
+            "details": [
+                "Web software development",
+                "Backend (Laravel, Nodejs, MongoDB, MySql)",
+                "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
+            ]
+        },
+        "gobernacion_sucre": {
+            "role": "Systems Engineer",
+            "description": "Management and control of computer systems",
+            "details": [
+                "Data entry",
+                "Control and supervision of data entry team",
+                "Control and supervision of vaccination inventory",
+                "Computer equipment audit"
+            ]
+        },
+        "smart_mobility": {
+            "role": "Project Engineer",
+            "description": "Technological infrastructure project management",
+            "details": [
+                "Server installation",
+                "3G and 4G communication equipment configuration",
+                "Traffic light controller equipment configuration",
+                "Traffic light control system administration"
+            ]
+        },
+        "dane": {
+            "role": "Systems Engineer",
+            "description": "Statistical data management",
+            "details": [
+                "Management of specialized statistical equipment",
+                "Confidential information backup",
+                "Survey table and database management",
+                "Survey-associated personnel management"
+            ]
+        },
+        "xiriux": {
+            "role": "Development Engineer",
+            "description": "Security and networking solutions development",
+            "details": [
+                "Firewall development (Network Security)",
+                "Development on .NET platform",
+                "Database development (MySQL, SQL SERVER, Oracle)",
+                "Server administration",
+                "MESH design and configuration (WIFI Zones)"
+            ]
+        }
+    },
+    "skills": {
+        "skill_1": "Complex systems",
+        "skill_2": "PHP Frameworks",
+        "skill_3": "AJAX",
+        "skill_4": "Laravel",
+        "skill_5": "Node.js",
+        "skill_6": "MongoDB",
+        "skill_7": "React",
+        "skill_8": "TailwindCSS"
+    }
+}

@@ -1,255 +1,146 @@
-// i18n.js - Sistema de internacionalización para el portfolio
+// i18n.js - Sistema de internacionalización para el portfolio basado en JSON
 
-const translations = {
-    es: {
-        // Textos generales
-        job_title: "Desarrollador Backend",
-        summary_title: "Extracto",
-        summary_text: "Desde mucho antes del momento de mi graduación, la experiencia que tenía me permitió iniciar labores de desarrollo de software y mejorar aspectos que me mantuvieran al corriente con nuevas tecnologías.",
-        experience_title: "Experiencia Laboral",
-        education_title: "Educación",
-        education_degree: "Ingeniero de Sistemas",
-        skills_title: "Habilidades",
-        projects_title: "Proyectos",
-        certifications_title: "Certificaciones",
-        contact_title: "Contacto",
-        contact_info: "Información de Contacto",
-        professional_links: "Enlaces Profesionales",
-        rights_reserved: "Todos los derechos reservados.",
-        previous: "Anterior",
-        next: "Siguiente",
-        view_more: "Ver más",
-        view_less: "Ver menos",
-        page: "Página",
-        of: "de",
-        error_loading_repos: "Error al cargar los repositorios",
-        no_description: "Sin descripción",
-        no_language: "Sin lenguaje especificado",
-        no_repos_found: "No se encontraron repositorios",
-        view_on_github: "Ver en GitHub",
-        download_cv: "Descargar CV",
-
-        // Textos específicos de experiencias
-        brandlive: {
-            role: "Ingeniero Full Stack",
-            description: "Desarrollo de aplicaciones web con tecnologías modernas",
-            details: [
-                "Desarrollo frontend con React y TailwindCSS",
-                "Backend con Node.js y bases de datos NoSQL",
-                "Integración con APIs y servicios externos"
-            ]
-        },
-        lean_tech: {
-            role: "Desarrollador Backend",
-            description: "Desarrollo de soluciones backend escalables",
-            details: [
-                "Arquitectura de microservicios",
-                "Optimización de bases de datos",
-                "Implementación de APIs RESTful"
-            ]
-        },
-        freelance: {
-            role: "Desarrollador Independiente",
-            description: "Desarrollo integral de soluciones web",
-            details: [
-                "Desarrollo de software web",
-                "Backend (Laravel, Nodejs, MongoDB, MySql)",
-                "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
-            ]
-        },
-        gobernacion_sucre: {
-            role: "Ingeniero de sistemas",
-            description: "Gestión y control de sistemas informáticos",
-            details: [
-                "Digitación de información",
-                "Control y Supervisión de equipo de digitadores",
-                "Control y supervisión de inventario de vacunación",
-                "Auditoría a equipos de cómputo"
-            ]
-        },
-        smart_mobility: {
-            role: "Ingeniero de proyecto",
-            description: "Gestión de proyectos de infraestructura tecnológica",
-            details: [
-                "Instalación de servidores",
-                "Configuración de equipos de comunicación 3G y 4G",
-                "Configuración de equipos controladores semafóricos",
-                "Administración de sistema de control semafórico"
-            ]
-        },
-        dane: {
-            role: "Ingeniero de sistemas",
-            description: "Gestión de datos estadísticos",
-            details: [
-                "Manejo de Equipos especializados estadísticos",
-                "Backup de información confidencial",
-                "Manejo de Tabla y Base de datos de encuestas",
-                "Manejo de personal asociado a encuestas"
-            ]
-        },
-        xiriux: {
-            role: "Ingeniero de Desarrollo",
-            description: "Desarrollo de soluciones de seguridad y networking",
-            details: [
-                "Desarrollo de Firewall (Network Security)",
-                "Desarrollo sobre plataforma .NET",
-                "Desarrollo DataBase (MySQL, SQL SERVER, Oracle)",
-                "Administración de Servidores",
-                "Diseño y configuración de MESH (Zonas WIFI)"
-            ]
+// Inicializar objeto en el ámbito global para acceso desde main.js
+window.i18n = {
+    translations: {},
+    currentLanguage: 'es',
+    supportedLanguages: ['es', 'en'],
+    defaultLanguage: 'es',
+    
+    // Cargar un archivo de traducción
+    async loadTranslation(lang) {
+        try {
+            const response = await fetch(`locales/${lang}.json`);
+            if (!response.ok) {
+                throw new Error(`Error al cargar el idioma ${lang}: ${response.status}`);
+            }
+            const data = await response.json();
+            this.translations[lang] = data;
+            return data;
+        } catch (error) {
+            console.error(`Error cargando el idioma ${lang}:`, error);
+            // Si falla, intentamos cargar desde el objeto predefinido de fallback
+            return this.getFallbackTranslation(lang);
         }
     },
-    en: {
-        // General texts
-        job_title: "Backend Developer",
-        summary_title: "Summary",
-        summary_text: "Long before my graduation, my experience allowed me to start working in software development and improve aspects that kept me up to date with new technologies.",
-        experience_title: "Work Experience",
-        education_title: "Education",
-        education_degree: "Systems Engineer",
-        skills_title: "Skills",
-        projects_title: "Projects",
-        certifications_title: "Certifications",
-        contact_title: "Contact",
-        contact_info: "Contact Information",
-        professional_links: "Professional Links",
-        rights_reserved: "All rights reserved.",
-        previous: "Previous",
-        next: "Next",
-        view_more: "View more",
-        view_less: "View less",
-        page: "Page",
-        of: "of",
-        error_loading_repos: "Error loading repositories",
-        no_description: "No description",
-        no_language: "No language specified",
-        no_repos_found: "No repositories found",
-        view_on_github: "View on GitHub",
-        download_cv: "Download CV",
-
-        // Experience specific texts
-        brandlive: {
-            role: "Full Stack Engineer",
-            description: "Web application development with modern technologies",
-            details: [
-                "Frontend development with React and TailwindCSS",
-                "Backend with Node.js and NoSQL databases",
-                "Integration with APIs and external services"
-            ]
-        },
-        lean_tech: {
-            role: "Backend Developer",
-            description: "Development of scalable backend solutions",
-            details: [
-                "Microservices architecture",
-                "Database optimization",
-                "RESTful API implementation"
-            ]
-        },
-        freelance: {
-            role: "Independent Developer",
-            description: "Comprehensive web solutions development",
-            details: [
-                "Web software development",
-                "Backend (Laravel, Nodejs, MongoDB, MySql)",
-                "FrontEnd (Angular, React, Flutter, Boostrap, Materialize, Ezqueleton, TailwindCSS, Vue)"
-            ]
-        },
-        gobernacion_sucre: {
-            role: "Systems Engineer",
-            description: "Management and control of computer systems",
-            details: [
-                "Data entry",
-                "Control and supervision of data entry team",
-                "Control and supervision of vaccination inventory",
-                "Computer equipment audit"
-            ]
-        },
-        smart_mobility: {
-            role: "Project Engineer",
-            description: "Technological infrastructure project management",
-            details: [
-                "Server installation",
-                "3G and 4G communication equipment configuration",
-                "Traffic light controller equipment configuration",
-                "Traffic light control system administration"
-            ]
-        },
-        dane: {
-            role: "Systems Engineer",
-            description: "Statistical data management",
-            details: [
-                "Management of specialized statistical equipment",
-                "Confidential information backup",
-                "Survey table and database management",
-                "Survey-associated personnel management"
-            ]
-        },
-        xiriux: {
-            role: "Development Engineer",
-            description: "Security and networking solutions development",
-            details: [
-                "Firewall development (Network Security)",
-                "Development on .NET platform",
-                "Database development (MySQL, SQL SERVER, Oracle)",
-                "Server administration",
-                "MESH design and configuration (WIFI Zones)"
-            ]
-        }
-    }
-};
-
-// Idioma por defecto
-let currentLanguage = 'es';
-
-// Función para actualizar el contenido según el idioma
-function updateContent() {
-    // Actualizar textos generales
-    document.querySelectorAll('[data-i18n]').forEach(element => {
-        const key = element.getAttribute('data-i18n');
-        if (translations[currentLanguage][key]) {
-            element.textContent = translations[currentLanguage][key];
-        }
-    });
     
-    // Actualizar botones de ver más/menos
-    document.querySelectorAll('.toggle-details').forEach(button => {
-        const detailsDiv = button.nextElementSibling;
-        if (detailsDiv.classList.contains('visible')) {
-            button.textContent = translations[currentLanguage]['view_less'];
-        } else {
-            button.textContent = translations[currentLanguage]['view_more'];
+    // Traducciones de fallback para cuando no se puede cargar el archivo JSON
+    getFallbackTranslation(lang) {
+        const fallbacks = {
+            'es': {
+                "job_title": "Desarrollador Backend",
+                "summary_title": "Extracto",
+                "error_loading_repos": "Error al cargar los repositorios",
+                "no_description": "Sin descripción",
+                "no_language": "Sin lenguaje especificado",
+                "no_repos_found": "No se encontraron repositorios",
+                "view_on_github": "Ver en GitHub",
+                "page": "Página",
+                "of": "de",
+                "view_more": "Ver más",
+                "view_less": "Ver menos"
+            },
+            'en': {
+                "job_title": "Backend Developer",
+                "summary_title": "Summary",
+                "error_loading_repos": "Error loading repositories",
+                "no_description": "No description",
+                "no_language": "No language specified",
+                "no_repos_found": "No repositories found",
+                "view_on_github": "View on GitHub", 
+                "page": "Page",
+                "of": "of",
+                "view_more": "View more",
+                "view_less": "View less"
+            }
+        };
+        
+        return fallbacks[lang] || fallbacks[this.defaultLanguage];
+    },
+    
+    // Obtener una traducción
+    t(key, lang = this.currentLanguage) {
+        // Si no tenemos el idioma cargado, usamos el fallback
+        if (!this.translations[lang]) {
+            return this.getFallbackTranslation(lang)[key] || key;
         }
-    });
-
-    // Disparar evento para que main.js sepa que el idioma cambió
-    const languageChangedEvent = new CustomEvent('languageChanged', {
-        detail: { language: currentLanguage }
-    });
-    document.dispatchEvent(languageChangedEvent);
-}
-
-// Función para cambiar el idioma
-function changeLanguage(lang) {
-    if (translations[lang]) {
-        currentLanguage = lang;
-        updateContent();
+        
+        // Soporta claves con notación de puntos, ej: "experiences.brandlive.role"
+        if (key.includes('.')) {
+            let value = this.translations[lang];
+            const parts = key.split('.');
+            
+            for (const part of parts) {
+                if (value && typeof value === 'object' && part in value) {
+                    value = value[part];
+                } else {
+                    return key; // Regresa la clave si no existe en las traducciones
+                }
+            }
+            
+            return value;
+        }
+        
+        return this.translations[lang][key] || key;
+    },
+    
+    // Cambiar de idioma
+    async changeLanguage(lang) {
+        if (!this.supportedLanguages.includes(lang)) {
+            console.warn(`El idioma ${lang} no está soportado. Usando ${this.defaultLanguage}.`);
+            lang = this.defaultLanguage;
+        }
+        
+        // Si aún no hemos cargado este idioma, lo cargamos
+        if (!this.translations[lang]) {
+            await this.loadTranslation(lang);
+        }
+        
+        // Actualizar idioma actual
+        this.currentLanguage = lang;
         localStorage.setItem('portfolioLanguage', lang);
         
+        // Actualizar la interfaz
+        this.updateContent();
+        
         // Actualizar botones de idioma activo
-        document.getElementById('langEs').classList.toggle('bg-blue-900', lang === 'es');
-        document.getElementById('langEs').classList.toggle('bg-gray-800', lang !== 'es');
-        document.getElementById('langEn').classList.toggle('bg-blue-900', lang === 'en');
-        document.getElementById('langEn').classList.toggle('bg-gray-800', lang !== 'en');
+        document.getElementById('langEs')?.classList.toggle('bg-blue-900', lang === 'es');
+        document.getElementById('langEs')?.classList.toggle('bg-gray-800', lang !== 'es');
+        document.getElementById('langEn')?.classList.toggle('bg-blue-900', lang === 'en');
+        document.getElementById('langEn')?.classList.toggle('bg-gray-800', lang !== 'en');
+        
+        // Notificar a otros componentes del cambio
+        document.dispatchEvent(new CustomEvent('languageChanged', {
+            detail: { language: lang }
+        }));
+    },
+    
+    // Actualizar todos los elementos con atributo data-i18n
+    updateContent() {
+        // Actualizar textos generales
+        document.querySelectorAll('[data-i18n]').forEach(element => {
+            const key = element.getAttribute('data-i18n');
+            element.textContent = this.t(key);
+        });
+        
+        // Actualizar botones de ver más/menos
+        document.querySelectorAll('.toggle-details').forEach(button => {
+            const detailsDiv = button.nextElementSibling;
+            if (detailsDiv.classList.contains('visible')) {
+                button.textContent = this.t('view_less');
+            } else {
+                button.textContent = this.t('view_more');
+            }
+        });
     }
-}
+};
 
 // Función para generar PDF
 function generatePDF() {
     const element = document.body;
     const opt = {
         margin: 10,
-        filename: `Kristian_Orozco_CV_${currentLanguage}.pdf`,
+        filename: `Kristian_Orozco_CV_${window.i18n.currentLanguage}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
             scale: 2,
@@ -280,24 +171,22 @@ function generatePDF() {
 }
 
 // Inicialización al cargar el DOM
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     // Cargar idioma guardado o usar español por defecto
-    const savedLanguage = localStorage.getItem('portfolioLanguage') || 'es';
-    changeLanguage(savedLanguage);
+    const savedLanguage = localStorage.getItem('portfolioLanguage') || window.i18n.defaultLanguage;
+    
+    // Precargar ambos idiomas para evitar problemas de "translations undefined"
+    for (const lang of window.i18n.supportedLanguages) {
+        await window.i18n.loadTranslation(lang);
+    }
+    
+    // Cambiar al idioma guardado o predeterminado
+    await window.i18n.changeLanguage(savedLanguage);
     
     // Configurar botones de idioma
-    document.getElementById('langEs')?.addEventListener('click', () => changeLanguage('es'));
-    document.getElementById('langEn')?.addEventListener('click', () => changeLanguage('en'));
+    document.getElementById('langEs')?.addEventListener('click', () => window.i18n.changeLanguage('es'));
+    document.getElementById('langEn')?.addEventListener('click', () => window.i18n.changeLanguage('en'));
     
     // Configurar botón de PDF
     document.getElementById('downloadPdf')?.addEventListener('click', generatePDF);
 });
-
-// Exportar para uso en otros archivos si es necesario
-if (typeof module !== 'undefined' && module.exports) {
-    module.exports = {
-        translations,
-        currentLanguage,
-        changeLanguage
-    };
-}
