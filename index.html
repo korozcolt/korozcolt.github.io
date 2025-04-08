@@ -8,25 +8,39 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/main.css">
+    <!-- Agregamos html2pdf para generar PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 </head>
 
 <body class="bg-black text-white">
+    <!-- Language selector -->
+    <div class="fixed top-4 right-4 z-50 flex space-x-2">
+        <button id="langEs" class="bg-blue-900 text-white px-3 py-1 rounded-md text-sm hover:bg-blue-800">ES</button>
+        <button id="langEn" class="bg-gray-800 text-white px-3 py-1 rounded-md text-sm hover:bg-gray-700">EN</button>
+        <button id="downloadPdf" class="bg-green-900 text-white px-3 py-1 rounded-md text-sm hover:bg-green-800 flex items-center">
+            <svg class="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"/>
+            </svg>
+            PDF
+        </button>
+    </div>
+
     <!-- Header -->
     <header class="py-12 text-center">
         <h1 class="text-4xl font-bold">Kristian José Orozco Arroyo</h1>
-        <p class="text-xl text-gray-400 mt-2">Backend Developer</p>
+        <p class="text-xl text-gray-400 mt-2" data-i18n="job_title">Backend Developer</p>
         <p class="text-gray-400 mt-1">Sincelejo, Sucre, Colombia</p>
         <div class="mt-4 flex justify-center space-x-4">
-            <a href="https://github.com/korozcolt" target="_blank" class="text-gray-400 hover:text-white">GitHub</a>
-            <a href="https://www.linkedin.com/in/kristian-orozco-backend/" target="_blank"
+            <a href="https://github.com/korozcolt" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-white">GitHub</a>
+            <a href="https://www.linkedin.com/in/kristian-orozco-backend/" target="_blank" rel="noopener noreferrer"
                 class="text-gray-400 hover:text-white">LinkedIn</a>
         </div>
     </header>
 
     <!-- Extracto -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Extracto</h2>
-        <p class="text-gray-400 leading-relaxed">
+        <h2 class="text-2xl font-bold mb-4" data-i18n="summary_title">Extracto</h2>
+        <p class="text-gray-400 leading-relaxed" data-i18n="summary_text">
             Desde mucho antes del momento de mi graduación, la experiencia que tenía me permitió iniciar labores de
             desarrollo de software y mejorar aspectos que me mantuvieran al corriente con nuevas tecnologías.
         </p>
@@ -34,13 +48,13 @@
 
     <!-- Experiencia Laboral -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Experiencia Laboral</h2>
+        <h2 class="text-2xl font-bold mb-4" data-i18n="experience_title">Experiencia Laboral</h2>
         <div id="experiences" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 page-transition">
         </div>
         <div class="mt-8 flex justify-center space-x-4">
-            <button id="prevPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300">Anterior</button>
+            <button id="prevPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300" data-i18n="previous">Anterior</button>
             <span id="pageInfo" class="text-gray-400 flex items-center"></span>
-            <button id="nextPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300">Siguiente</button>
+            <button id="nextPageExp" class="bg-gray-800 text-white px-4 py-2 rounded-lg hover:bg-gray-700 disabled:opacity-50 transition-colors duration-300" data-i18n="next">Siguiente</button>
         </div>
     </section>
     
@@ -50,7 +64,7 @@
             <p class="text-gray-400 role"></p>
             <p class="text-gray-400 period"></p>
             <p class="text-gray-400 location"></p>
-            <button class="text-blue-400 hover:text-blue-300 mt-4 toggle-details transition-colors duration-300">Ver más</button>
+            <button class="text-blue-400 hover:text-blue-300 mt-4 toggle-details transition-colors duration-300" data-i18n="view_more">Ver más</button>
             <div class="details mt-4 space-y-2">
                 <p class="text-gray-300 description"></p>
                 <ul class="list-disc list-inside text-gray-400"></ul>
@@ -60,44 +74,44 @@
 
     <!-- Educación -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Educación</h2>
+        <h2 class="text-2xl font-bold mb-4" data-i18n="education_title">Educación</h2>
         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
-            <h3 class="text-xl font-semibold">Ingeniero de Sistemas</h3>
+            <h3 class="text-xl font-semibold" data-i18n="education_degree">Ingeniero de Sistemas</h3>
             <p class="text-gray-400">Fundación Universitaria San Martín · 2005 - 2011</p>
         </div>
     </section>
 
     <!-- Habilidades -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Habilidades</h2>
+        <h2 class="text-2xl font-bold mb-4" data-i18n="skills_title">Habilidades</h2>
         <div class="flex flex-wrap gap-2">
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">Sistemas complejos</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">Frameworks de PHP</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">AJAX</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">Laravel</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">Node.js</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">MongoDB</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">React</span>
-            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full">TailwindCSS</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_1">Sistemas complejos</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_2">Frameworks de PHP</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_3">AJAX</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_4">Laravel</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_5">Node.js</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_6">MongoDB</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_7">React</span>
+            <span class="bg-blue-900 text-blue-300 px-4 py-2 rounded-full" data-i18n="skill_8">TailwindCSS</span>
         </div>
     </section>
 
     <!-- Proyectos -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Proyectos</h2>
+        <h2 class="text-2xl font-bold mb-4" data-i18n="projects_title">Proyectos</h2>
         <div id="repos" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <!-- Los repositorios se cargarán aquí dinámicamente -->
         </div>
         <!-- Paginador -->
         <div id="pagination" class="mt-6 flex justify-center space-x-4">
-            <button id="prevPage" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800">Anterior</button>
-            <button id="nextPage" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800">Siguiente</button>
+            <button id="prevPage" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800" data-i18n="previous">Anterior</button>
+            <button id="nextPage" class="bg-gray-900 text-white px-4 py-2 rounded-lg hover:bg-gray-800" data-i18n="next">Siguiente</button>
         </div>
     </section>
 
     <!-- Certificaciones -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-4">Certificaciones</h2>
+        <h2 class="text-2xl font-bold mb-4" data-i18n="certifications_title">Certificaciones</h2>
         <div class="bg-gray-900 p-6 rounded-lg shadow-lg">
             <h3 class="text-xl font-semibold">Scrum Fundamentals Certified</h3>
         </div>
@@ -105,10 +119,10 @@
 
     <!-- Contacto -->
     <section class="container mx-auto px-4 py-12 fade-in">
-        <h2 class="text-2xl font-bold mb-6">Contacto</h2>
+        <h2 class="text-2xl font-bold mb-6" data-i18n="contact_title">Contacto</h2>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-semibold mb-4">Información de Contacto</h3>
+                <h3 class="text-xl font-semibold mb-4" data-i18n="contact_info">Información de Contacto</h3>
                 <div class="space-y-4">
                     <a href="tel:+573016859339" class="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -125,15 +139,15 @@
                 </div>
             </div>
             <div class="bg-gray-900 p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300">
-                <h3 class="text-xl font-semibold mb-4">Enlaces Profesionales</h3>
+                <h3 class="text-xl font-semibold mb-4" data-i18n="professional_links">Enlaces Profesionales</h3>
                 <div class="space-y-4">
-                    <a href="https://www.linkedin.com/in/kristian-orozco-backend" target="_blank" class="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="https://www.linkedin.com/in/kristian-orozco-backend" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
                         <svg class="w-5 h-5 mr-3" fill="currentColor" viewBox="0 0 24 24">
                             <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
                         </svg>
                         LinkedIn
                     </a>
-                    <a href="https://kronnos.co" target="_blank" class="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
+                    <a href="https://kronnos.co" target="_blank" rel="noopener noreferrer" class="flex items-center text-gray-400 hover:text-blue-400 transition-colors">
                         <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"/>
                         </svg>
@@ -146,11 +160,13 @@
 
     <!-- Footer -->
     <footer class="bg-gray-900 py-6 mt-12 text-center">
-        <p class="text-gray-400">© <script>document.write(new Date().getFullYear())</script> Kristian Orozco. Todos los derechos reservados.</p>
+        <p class="text-gray-400">© <script>document.write(new Date().getFullYear())</script> Kristian Orozco. <span data-i18n="rights_reserved">Todos los derechos reservados.</span></p>
     </footer>
 
     <!-- Script para el efecto de scroll -->
     <script src="js/main.js"></script>
+    <!-- Script para multilenguaje -->
+    <script src="js/i18n.js"></script>
 </body>
 
 </html>
