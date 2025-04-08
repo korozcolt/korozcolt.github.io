@@ -135,41 +135,6 @@ window.i18n = {
     }
 };
 
-// Función para generar PDF
-function generatePDF() {
-    const element = document.body;
-    const opt = {
-        margin: 10,
-        filename: `Kristian_Orozco_CV_${window.i18n.currentLanguage}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { 
-            scale: 2,
-            logging: true,
-            useCORS: true,
-            allowTaint: true
-        },
-        jsPDF: { 
-            unit: 'mm', 
-            format: 'a4', 
-            orientation: 'portrait' 
-        }
-    };
-
-    // Ocultar botones de idioma y PDF antes de generar
-    const languageButtons = document.querySelector('.fixed');
-    if (languageButtons) {
-        languageButtons.style.display = 'none';
-    }
-    
-    // Generar PDF
-    html2pdf().set(opt).from(element).save().then(() => {
-        // Mostrar botones nuevamente después de generar
-        if (languageButtons) {
-            languageButtons.style.display = 'flex';
-        }
-    });
-}
-
 // Inicialización al cargar el DOM
 document.addEventListener('DOMContentLoaded', async () => {
     // Cargar idioma guardado o usar español por defecto
@@ -187,6 +152,4 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('langEs')?.addEventListener('click', () => window.i18n.changeLanguage('es'));
     document.getElementById('langEn')?.addEventListener('click', () => window.i18n.changeLanguage('en'));
     
-    // Configurar botón de PDF
-    document.getElementById('downloadPdf')?.addEventListener('click', generatePDF);
 });
